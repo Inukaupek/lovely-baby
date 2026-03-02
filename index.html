@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Birthday My Love</title>
+    <style>
+        body {
+            background-color: #ffeef2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            z-index: 10;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 80%;
+        }
+        h1 { color: #d63384; font-size: 2.5rem; }
+        #message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            min-height: 100px;
+        }
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button:hover { background: #d63384; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="title">Click to Open ❤️</h1>
+        <div id="message">I have a secret for the birthday girl...</div>
+        <button id="btn" onclick="startSurprise()">Open Your Gift</button>
+    </div>
+
+    <script>
+        const msgText = "Happy 23rd Birthday, my baby girl! 🎂\n\nI am so super proud of you and how hard you're working for your exams. I know you'll get amazing results! \n\nI'm so sorry about yesterday, I never want to make you feel ignored. I love you unconditionally, more than anything in this world. ❤️";
+
+        function startSurprise() {
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('title').innerText = "Happy 23rd Birthday!";
+            document.getElementById('message').innerText = "";
+            
+            // Start Typewriter
+            let i = 0;
+            function typeWriter() {
+                if (i < msgText.length) {
+                    document.getElementById("message").innerHTML += msgText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            typeWriter();
+
+            // Start Heart Rain
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+    </script>
+</body>
+</html>
