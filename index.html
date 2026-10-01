@@ -1,460 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For My Love ❤️</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
-        rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background: linear-gradient(135deg, #081120, #0f172a);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 40px 20px;
-        }
-
-        /* Animated Background */
-
-        .bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            top: 0;
-            left: 0;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            animation: float 12s infinite linear;
-        }
-
-        .circle:nth-child(1) {
-            width: 350px;
-            height: 350px;
-            left: -100px;
-            top: -100px;
-        }
-
-        .circle:nth-child(2) {
-            width: 250px;
-            height: 250px;
-            right: -70px;
-            bottom: -70px;
-            animation-duration: 16s;
-        }
-
-        .circle:nth-child(3) {
-            width: 180px;
-            height: 180px;
-            top: 60%;
-            left: 10%;
-            animation-duration: 20s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-30px) rotate(180deg);
-            }
-
-            100% {
-                transform: translateY(0px) rotate(360deg);
-            }
-        }
-
-        /* Main Container */
-
-        .container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 1200px;
-            min-height: 700px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-radius: 35px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Left */
-
-        .left {
-            background: linear-gradient(135deg, #ff4d6d, #ff758f);
-            padding: 70px 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .left::before {
-            content: "";
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            top: -220px;
-            left: -220px;
-        }
-
-        .heart {
-            font-size: 140px;
-            animation: heartbeat 1.2s infinite;
-            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
-            z-index: 2;
-        }
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.12);
-            }
-        }
-
-        .left h1 {
-            color: white;
-            font-size: 70px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 20px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .left p {
-            color: white;
-            text-align: center;
-            font-size: 18px;
-            line-height: 1.9;
-            margin-top: 20px;
-            max-width: 450px;
-            z-index: 2;
-        }
-
-        /* Right */
-
-        .right {
-            background: white;
-            padding: 80px 60px;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .tag {
-            color: #ff4d6d;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-
-        .right h2 {
-            font-size: 56px;
-            color: #111827;
-            line-height: 1.1;
-            margin-bottom: 35px;
-        }
-
-        .message {
-            color: #4b5563;
-            font-size: 18px;
-            line-height: 2;
-        }
-
-        .highlight {
-            color: #ff4d6d;
-            font-weight: 600;
-        }
-
-        .btn {
-            margin-top: 40px;
-            padding: 18px 35px;
-            border: none;
-            border-radius: 60px;
-            background: linear-gradient(135deg, #ff4d6d, #ff758f);
-            color: white;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 240px;
-            transition: 0.4s;
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.35);
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.03);
-        }
-
-        .love-message {
-            margin-top: 30px;
-            font-size: 24px;
-            color: #ff4d6d;
-            font-weight: 700;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 1s;
-        }
-
-        .love-message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Floating Hearts */
-
-        .floating-heart {
-            position: fixed;
-            bottom: -50px;
-            font-size: 30px;
-            z-index: 999;
-            animation: rise linear forwards;
-            pointer-events: none;
-        }
-
-        @keyframes rise {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-120vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-
-        @media(max-width:950px) {
-
-            body {
-                padding: 20px 15px;
-                align-items: flex-start;
-            }
-
-            .container {
-                grid-template-columns: 1fr;
-                width: 100%;
-                min-height: auto;
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-
-            .left {
-                padding: 50px 30px;
-            }
-
-            .heart {
-                font-size: 110px;
-            }
-
-            .left h1 {
-                font-size: 52px;
-            }
-
-            .left p {
-                font-size: 16px;
-            }
-
-            .right {
-                padding: 50px 30px;
-            }
-
-            .right h2 {
-                font-size: 38px;
-            }
-
-            .message {
-                font-size: 16px;
-                line-height: 1.9;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media(max-width:500px) {
-
-            .heart {
-                font-size: 90px;
-            }
-
-            .left h1 {
-                font-size: 42px;
-            }
-
-            .right h2 {
-                font-size: 30px;
-            }
-
-            .message {
-                font-size: 15px;
-            }
-
-            .love-message {
-                font-size: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff8f8">
+<title>For You ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+:root{--ink:#392f32;--muted:#75666b;--rose:#d96b83;--rose2:#f2a8b7;--cream:#fffaf8;--card:rgba(255,255,255,.78);--line:#f1dce1;--shadow:0 22px 70px rgba(121,64,77,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'DM Sans',sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#ffe9ee 0,transparent 30%),radial-gradient(circle at 85% 25%,#fff0d9 0,transparent 26%),linear-gradient(180deg,#fffafa,#fff7f4 60%,#fff);overflow-x:hidden}.wrap{width:min(920px,calc(100% - 34px));margin:auto}.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:70px 0;position:relative}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.65);font-size:.82rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3.1rem,10vw,7rem);line-height:.93;margin:25px auto 18px;max-width:800px;font-weight:600}.hero h1 em{color:var(--rose);font-weight:600}.hero p{max-width:620px;margin:0 auto;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);line-height:1.75}.scroll{display:inline-block;margin-top:35px;text-decoration:none;color:white;background:var(--ink);padding:13px 22px;border-radius:99px;font-weight:600;box-shadow:0 12px 30px rgba(57,47,50,.15)}.heart{position:absolute;opacity:.18;animation:float 8s ease-in-out infinite;font-size:30px}.h1{left:8%;top:20%}.h2{right:9%;top:35%;animation-delay:-2s}.h3{left:15%;bottom:15%;animation-delay:-5s}@keyframes float{50%{transform:translateY(-18px) rotate(8deg)}}section{padding:55px 0}.card{background:var(--card);border:1px solid rgba(241,220,225,.9);backdrop-filter:blur(12px);border-radius:30px;padding:clamp(25px,6vw,58px);box-shadow:var(--shadow)}.label{color:var(--rose);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}.card h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);margin:10px 0 24px}.letter p{font-size:1.06rem;line-height:1.9;color:#514348;margin:0 0 18px}.signature{font-family:'Playfair Display',serif;font-style:italic;font-size:1.55rem;color:var(--rose);margin-top:28px}.day{text-align:center}.day .big{font-size:clamp(3.8rem,10vw,7rem);margin:0}.day p{color:var(--muted);line-height:1.8;max-width:650px;margin:15px auto 0}.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.promise{padding:22px;border-radius:22px;background:#fff;border:1px solid var(--line)}.promise b{display:block;margin-bottom:8px}.promise span{font-size:.93rem;line-height:1.55;color:var(--muted)}.feedback h2{margin-bottom:12px}.feedback .intro{color:var(--muted);line-height:1.7;margin-bottom:24px}.field{margin-bottom:16px}.field label{display:block;font-size:.88rem;font-weight:700;margin:0 0 8px}.field input,.field textarea{width:100%;border:1px solid #ead5da;border-radius:16px;background:rgba(255,255,255,.9);padding:15px 16px;font:inherit;color:var(--ink);outline:none;transition:.2s}.field textarea{min-height:165px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--rose2);box-shadow:0 0 0 4px rgba(217,107,131,.09)}.send{border:0;border-radius:99px;background:var(--rose);color:white;font:inherit;font-weight:700;padding:14px 24px;cursor:pointer;transition:.2s}.send:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(217,107,131,.25)}.send:disabled{opacity:.6;cursor:wait}.status{display:none;margin-top:16px;padding:13px 16px;border-radius:14px;background:#f4fff7;color:#346344}.privacy{font-size:.8rem;color:#98878c;margin-top:12px}.footer{text-align:center;padding:40px 20px 65px;color:#9a858b;font-size:.88rem}@media(max-width:700px){.promises{grid-template-columns:1fr}.hero{min-height:92vh}.card{border-radius:24px}}
+</style>
 </head>
-
 <body>
+<div class="hero">
+  <span class="heart h1">♡</span><span class="heart h2">♡</span><span class="heart h3">♡</span>
+  <div class="wrap">
+    <div class="eyebrow">A little page, only for you ♡</div>
+    <h1>Happy <em>Children's Day,</em><br>my love.</h1>
+    <p>I know a webpage cannot fix the moments when I have hurt you. I made this because there are things in my heart I want to say properly — without excuses, and without asking you to forget how you feel.</p>
+    <a class="scroll" href="#letter">Read my heart ↓</a>
+  </div>
+</div>
 
-    <!-- Background -->
+<main class="wrap">
+<section id="letter">
+  <article class="card letter">
+    <div class="label">Something I need you to know</div>
+    <h2>I love you. And I know love has to be shown.</h2>
+    <p>I know I haven't been treating you the way you deserve. I also know I have said many times that I will change, and then repeated things that hurt you. Because of that, I understand why my words alone may not mean much to you right now.</p>
+    <p>But I want you to know that my love for you has always been sincere. These last two days made me realize even more deeply how much you mean to me. I don't always know how to explain what I feel, but the thought of making you feel unloved, unimportant, or disappointed hurts me too.</p>
+    <p>Sometimes I feel like I am not at the standard you deserve. I don't want to use that as an excuse. I want it to be a reason for me to grow — to listen better, think before I act, respect your feelings, and show you through my actions that you matter to me.</p>
+    <p>I know saying “I'll change” again isn't enough. I don't expect this page to make everything okay, and I don't expect you to immediately trust another promise. I want to earn that trust slowly, consistently, through what I do.</p>
+    <p>I am still learning how to love you better. I will make mistakes, but I sincerely want to become a better partner to you — not just for a day, but in the little choices I make every day.</p>
+    <div class="signature">With all my love, Bubs ♡</div>
+  </article>
+</section>
 
-    <div class="bg">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+<section>
+  <div class="card day">
+    <div class="label">October 1st</div>
+    <div class="big">🧸🎈🌸</div>
+    <h2>Happy Children's Day!</h2>
+    <p>I know you like Children's Day, so I couldn't let today pass without wishing you. I hope the playful, soft, innocent part of you always has reasons to smile. You deserve days filled with happiness, silly laughter, little surprises, and love.</p>
+    <div class="promises">
+      <div class="promise"><b>Listen more</b><span>Not only hear your words, but understand what you are actually feeling.</span></div>
+      <div class="promise"><b>Show it in actions</b><span>Less repeating promises. More consistency in the small things that matter.</span></div>
+      <div class="promise"><b>Make you feel valued</b><span>Remember that love is also respect, consideration, effort, and making space for your feelings.</span></div>
     </div>
+  </div>
+</section>
 
-    <!-- Main -->
+<section id="thoughts">
+  <div class="card feedback">
+    <div class="label">No need to protect my feelings here</div>
+    <h2>Tell me your honest thoughts.</h2>
+    <p class="intro">You can tell me anything you want me to understand — what hurt you, what I should do differently, what you need from me, or simply how you feel. I promise to read it to understand, not to argue with it.</p>
 
-    <div class="container">
+    <form id="heartForm" action="https://formspree.io/f/xwlpjwgl" method="POST">
+      <input type="hidden" name="subject" value="Her honest thoughts from the page ❤️">
+      <input type="hidden" name="source" value="Children's Day love page">
+      <div class="field">
+        <label for="feeling">How are you feeling right now?</label>
+        <input id="feeling" name="feeling" type="text" placeholder="You can say it in your own words…">
+      </div>
+      <div class="field">
+        <label for="message">What do you honestly want me to know?</label>
+        <textarea id="message" name="message" required placeholder="Write whatever is in your heart. I will listen."></textarea>
+      </div>
+      <button class="send" type="submit">Send it to me ♡</button>
+      <div class="status" id="status">Thank you for being honest with me. I received your words. ♡</div>
 
-        <!-- LEFT -->
+    </form>
+  </div>
+</section>
+</main>
+<footer class="footer">Made with love, and with the intention to do better. ♡</footer>
 
-        <div class="left">
-
-            <div class="heart">❤️</div>
-
-            <h1>My Favorite Person</h1>
-
-            <p>
-                Even on your hardest days,
-                you are still the most beautiful thing in my world.
-            </p>
-
-        </div>
-
-        <!-- RIGHT -->
-
-        <div class="right">
-
-            <div class="tag">JUST FOR YOU</div>
-
-            <h2>
-                I just wanted to remind you...
-            </h2>
-
-            <div class="message">
-
-                I know things have been difficult lately,
-                and maybe you feel tired, stressed, or overwhelmed.
-
-                <br><br>
-
-                But I hope you never forget how special you are to me.
-
-                <br><br>
-
-                Your smile makes my days better.
-                Your voice calms me.
-                Your presence alone means more than you know.
-
-                <br><br>
-
-                No matter what happens,
-                <span class="highlight">
-                    I will always be here for you.
-                </span>
-
-            </div>
-
-            <button class="btn" onclick="showLove()">
-                Click Here ❤️
-            </button>
-
-            <div class="love-message" id="loveText">
-                I love you endlessly ❤️
-            </div>
-
-        </div>
-
-    </div>
-
-    <script>
-
-        function showLove() {
-
-            document.getElementById("loveText").classList.add("show");
-
-            for (let i = 0; i < 60; i++) {
-
-                setTimeout(createHeart, i * 100);
-            }
-        }
-
-        function createHeart() {
-
-            const heart = document.createElement("div");
-
-            heart.classList.add("floating-heart");
-
-            const hearts = ["❤️", "💖", "💕", "💗", "💘"];
-
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-
-            heart.style.left = Math.random() * 100 + "vw";
-
-            heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-
-            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 7000);
-        }
-
-        // auto hearts
-
-        setInterval(createHeart, 1200);
-
-    </script>
-
+<script>
+const form = document.getElementById('heartForm');
+const statusBox = document.getElementById('status');
+const button = form.querySelector('button');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (form.action.includes('YOUR_FORM_ID')) {
+    alert('Before publishing, replace YOUR_FORM_ID with your Formspree form ID.');
+    return;
+  }
+  button.disabled = true;
+  button.textContent = 'Sending…';
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Submission failed');
+    form.reset();
+    statusBox.style.display = 'block';
+    button.textContent = 'Sent ♡';
+  } catch (err) {
+    alert('I could not send this right now. Please try again in a moment.');
+    button.disabled = false;
+    button.textContent = 'Send it to me ♡';
+  }
+});
+</script>
 </body>
-
 </html>
